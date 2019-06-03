@@ -7,7 +7,7 @@
     <title>Word Guess</title>
     <link rel="stylesheet" href="">
 </head>
-<body>
+<body onload="startLogic()">
     <h1>Guess of Thrones</h1>
 
     <div class="row">
@@ -16,15 +16,22 @@
         </div>
         <div class="column">
             <p>Press any key to get started</p>
-            <br>
-            <p>Wins <!-- counter --></p>
-            <br>
-            <p>current word</p>
-            <div class="letter-guess"><!-- empty spaces--></div>
+            <p>Wins</p> <!-- counter -->
+            <p id="wins"></p>
+            <p>current word</p> 
+            <p id="current-word"></p>
             <p>letters already guessed</p>
-            <div class="guessed"></div>
+            <p id="already-guessed"><p>
         </div>
     </div>
+    <!-- <script language='JavaScript' type='text/JavaScript'>
+        document.onkeypress = function(key_dtl) {
+         key_dtl = key_dtl || window.event; 
+        var uni_code = key_dtl.keyCode || key_dtl.which; 
+        var key_name = String.fromCharCode(uni_code); 
+        alert(key_name); 
+        }
+        </script> -->
     <script src="assets/javascript/game.js"></script>
 
 </body>
