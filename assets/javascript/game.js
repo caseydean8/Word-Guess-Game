@@ -22,8 +22,13 @@ document.onkeypress = function(key_dtl) {
     key_dtl = key_dtl || window.event; 
    var uni_code = key_dtl.keyCode || key_dtl.which; 
    var key_name = String.fromCharCode(uni_code); 
-    document.getElementById("current-word").innerHTML = key_name;
-   }
+   // if player keypress matches letter in current word apply to #"current-word"
+   for (var j = 0; j < word.length; j++) {
+        if (word[j] === key_name) {
+            console.log(key_name)
+            answerArray[j] = key_name;
+            document.getElementById("current-word").innerHTML = key_name;
+   }}}
 // create an on key press function
 // function winFunction() {
 //     // if letter key pressed is in current word
