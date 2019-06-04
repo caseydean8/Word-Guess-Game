@@ -8,6 +8,8 @@ console.log(word);
 console.log(word.length)
 // set up an array to designate the answer
 var answerArray = [];
+// set up array for incorrect guesses
+var wrongLetters = [];
 // creates empty spaces for current word
 function startLogic() {
 for (var i = 0; i < word.length; i++) {
@@ -16,7 +18,7 @@ for (var i = 0; i < word.length; i++) {
     document.getElementById("current-word").innerHTML = answerArray.join(" ");
 }
 }
-
+//create array for incorrect keypress
 // get keypress to register
 document.onkeypress = function(key_dtl) {
     key_dtl = key_dtl || window.event; 
@@ -30,35 +32,14 @@ document.onkeypress = function(key_dtl) {
             console.log(answerArray);
             //apply #"current-word" keypress match in correct position
             document.getElementById("current-word").innerHTML = answerArray.join();
-   }}}
-// create an on key press function
-// function winFunction() {
-//     // if letter key pressed is in current word
-//     document.getElementById
-// }
-// var remainingLetters = word.length;
+        }
+        // if player keypress doesn't match #current-word send to letters already guessed
+        else {
+            wrongLetters[0] = key_name;
+            document.getElementById("already-guessed").innerHTML += wrongLetters;
+            console.log(wrongLetters);
+        }
+        }   
+    }
 
-// while (remainingLetters > 0) {
-//     // show player progress
-//     alert(answerArray.join(" "));
-//     // get a guess from player
-//     var guess = prompt("Guess a letter, or cancel to stop playing.");
-//     if (guess === null) {
-//         break;
-//     }
-//     else if (guess.length !==1) {
-//         alert("Please enter a single letter.");
-//     }
-//     else {
-//         // update the game state with the guess
-//         for (var j = 0; j < word.length; j++) {
-//             if (word[j] === guess) {
-//                 answerArray[j] = guess;
-//                 remainingLetters--;
-//             }
-//         }
-//     }
-// }
 
-// alert(answerArray.join(" "));
-// alert("Good job! The answer was " + word);
