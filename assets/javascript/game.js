@@ -27,7 +27,9 @@ document.onkeypress = function(key_dtl) {
         if (word[j] === key_name) {
             console.log(key_name)
             answerArray[j] = key_name;
-            document.getElementById("current-word").innerHTML = key_name;
+            console.log(answerArray);
+            //apply #"current-word" keypress match in correct position
+            document.getElementById("current-word").innerHTML = answerArray.join();
    }}}
 // create an on key press function
 // function winFunction() {
