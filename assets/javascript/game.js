@@ -8,12 +8,7 @@ console.log(word);
 console.log(word.length)
 // set up an array to designate the answer
 var answerArray = [];
-// function myFunction() {
-//     document.getElementById("current-word").innerHTML = ("_") * word.length;
-//     console.log("current-word");
-// }
-
-
+// creates empty spaces for current word
 function startLogic() {
 for (var i = 0; i < word.length; i++) {
     answerArray[i] = "_";
@@ -21,6 +16,19 @@ for (var i = 0; i < word.length; i++) {
     document.getElementById("current-word").innerHTML = answerArray.join(" ");
 }
 }
+
+// get keypress to register
+document.onkeypress = function(key_dtl) {
+    key_dtl = key_dtl || window.event; 
+   var uni_code = key_dtl.keyCode || key_dtl.which; 
+   var key_name = String.fromCharCode(uni_code); 
+    document.getElementById("current-word").innerHTML = key_name;
+   }
+// create an on key press function
+// function winFunction() {
+//     // if letter key pressed is in current word
+//     document.getElementById
+// }
 // var remainingLetters = word.length;
 
 // while (remainingLetters > 0) {
