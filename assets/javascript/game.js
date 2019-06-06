@@ -18,28 +18,41 @@ for (var i = 0; i < word.length; i++) {
     document.getElementById("current-word").innerHTML = answerArray.join(" ");
 }
 }
-//create array for incorrect keypress
+var guesses = 10
 // get keypress to register
 document.onkeypress = function(key_dtl) {
     key_dtl = key_dtl || window.event; 
    var uni_code = key_dtl.keyCode || key_dtl.which; 
-   var key_name = String.fromCharCode(uni_code); 
-   // if player keypress matches letter in current word apply to #"current-word"
-   for (var j = 0; j < word.length; j++) {
+   var key_name = String.fromCharCode(uni_code);
+    console.log(key_name);
+    var letterInWord = false;
+    //if the generated randomword is equal to the letter entered... then variable is true
+    for (var j = 0; j < word.length; j++) {
         if (word[j] === key_name) {
-            console.log(key_name)
-            answerArray[j] = key_name;
-            console.log(answerArray);
-            //apply #"current-word" keypress match in correct position
-            document.getElementById("current-word").innerHTML = answerArray.join();
+            letterInWord = true;
         }
-        // if player keypress doesn't match #current-word send to letters already guessed
-        else {
-            wrongLetters[0] = key_name;
-            document.getElementById("already-guessed").innerHTML += wrongLetters;
-            console.log(wrongLetters);
-        }
-        }   
     }
+    //if letterInWord (false)
+    if (letterInWord) {
+        console.log(letterInWord);
+        for (var j = 0; j < word.length; j++){
+            if (word[j] === key_name) 
+            answerArray[j] = key_name;
+            console.log(answerArray[j]);
+            document.getElementById("current-word").innerHTML = answerArray.join()
+            
+        }
+        
+    }
+    //otherwise, push the incorrect guess in the wrong guesses section, and reduce remaining guesses
+    else {
+        document.getElementById("already-guessed").innerHTML += key_name;
+        guesses--;
+    }
+}
 
+    
 
+    
+
+    
