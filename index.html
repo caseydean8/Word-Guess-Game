@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <title>Word Guess</title>
     <link rel="stylesheet" href="">
 </head>
+
 <body onload="startLogic()">
     <h1>Guess of Thrones</h1>
 
@@ -18,21 +20,17 @@
             <p>Press any key to get started</p>
             <p>Wins</p> <!-- counter -->
             <p id="wins"></p>
-            <p>current word</p> 
-            <p id="current-word" onkeypress="winFunction()"></p>
+            <p>current word</p>
+            <p id="current-word"></p>
+            <p>guesses left</p>
+            <p id="guesses-left">10</p>
             <p>letters already guessed</p>
-            <p id="already-guessed" onkeypress="loseFunction()"><p>
+            <p id="already-guessed"><p>
         </div>
     </div>
-    <!-- <script language='JavaScript' type='text/JavaScript'>
-        document.onkeypress = function(key_dtl) {
-         key_dtl = key_dtl || window.event; 
-        var uni_code = key_dtl.keyCode || key_dtl.which; 
-        var key_name = String.fromCharCode(uni_code); 
-        alert(key_name); 
-        }
-        </script> -->
+
     <script src="assets/javascript/game.js"></script>
 
 </body>
+
 </html>
