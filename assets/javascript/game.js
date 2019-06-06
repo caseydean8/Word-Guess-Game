@@ -30,8 +30,7 @@ console.log(word);
     }
 }
 
-    
-// get keypress to register
+    // get keypress to register
 document.onkeypress = function(key_dtl) {
     key_dtl = key_dtl || window.event; 
    var uni_code = key_dtl.keyCode || key_dtl.which; 
@@ -71,12 +70,18 @@ document.onkeypress = function(key_dtl) {
     console.log(correct);
     wins++;
     document.getElementById("wins").innerHTML = wins;
+    document.getElementById("already-guessed").innerHTML = " ";
     startLogic();
     } 
     
+    // reset game upon loss
+    else if (guesses === 0) {
+        document.getElementById("already-guessed").innerHTML = " ";
+        startLogic();
+    }
 }
 
 // if (guesses === 0) {
-//     startLogic(onload);
+//     startLogic();
 // }
 
