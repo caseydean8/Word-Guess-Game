@@ -5,11 +5,18 @@ var words = ['monkey', 'dog', 'pig']
 // pick a random word
 var word = words[Math.floor(Math.random() * words.length)];
 console.log(word);
-console.log(word.length)
+
 // set up an array to designate the answer
 var answerArray = [];
 // set up array for incorrect guesses
 var wrongLetters = [];
+// set up variable for wins
+var wins = 0
+// set guess-left counter
+var guesses = 10
+// set correct guess counter
+var correct = 0
+
 // creates empty spaces for current word
 function startLogic() {
 for (var i = 0; i < word.length; i++) {
@@ -19,32 +26,33 @@ for (var i = 0; i < word.length; i++) {
 }
 }
 
-// set guess-left counter
-var guesses = 9
-
 // get keypress to register
 document.onkeypress = function(key_dtl) {
     key_dtl = key_dtl || window.event; 
    var uni_code = key_dtl.keyCode || key_dtl.which; 
    var key_name = String.fromCharCode(uni_code);
-    console.log(key_name);
-    document.getElementById("guesses-left").innerHTML = guesses--;
+    guesses--;
+    document.getElementById("guesses-left").innerHTML = guesses;
+    
     //if the word generated is equal to the players keypress then set variable letterInWord to true
     var letterInWord = false;
     for (var j = 0; j < word.length; j++) {
         if (word[j] === key_name) {
             letterInWord = true;
+            correct++;
+            console.log(correct);
         }
     }
     //if letterInWord is true, create letter in current-word at correct index
     if (letterInWord) {
-        console.log(letterInWord);
+
+        
+            
         for (var j = 0; j < word.length; j++){
             if (word[j] === key_name) 
             answerArray[j] = key_name;
-            console.log(answerArray[j]);
-            document.getElementById("current-word").innerHTML = answerArray.join()
-            
+        
+            document.getElementById("current-word").innerHTML = answerArray.join();
         }
         
     }
@@ -53,9 +61,21 @@ document.onkeypress = function(key_dtl) {
         document.getElementById("already-guessed").innerHTML += key_name;
         
     }
+    // record win if player guesses correctly
+    if (correct === word.length) {
+    console.log(correct);
+    wins++;
+    document.getElementById("wins").innerHTML = wins;
+    startLogic();
+    } 
+    
 }
 
-    
+if (guesses === 0) {
+    startLogic(onload);
+}
+
+
 
     
 
