@@ -1,31 +1,36 @@
 // array of GOT names, to be added after logic is completed
 // var words = ["daenerys targaryen", ['jon snow'], ['tyrion lannister'], ['bran stark'], ['sansa stark'], ['arya stark'], ['cersei lannister'], ['jaime lannister'], ['khal drago'], ['joffrey baratheon'], ['theon greyjoy'], ['samwell tarly'], ['brienne of tarth'], ['ramsay bolton'], ['podrick payne'], ['davos seaworth'], ['jorah mormont'], ['petyr Baelish']];
 
+// set up variable for wins
+var wins = 0
+// temporary test array
 var words = ['monkey', 'dog', 'pig']
 // pick a random word
 var word = words[Math.floor(Math.random() * words.length)];
 console.log(word);
-
 // set up an array to designate the answer
 var answerArray = [];
-// set up array for incorrect guesses
-var wrongLetters = [];
-// set up variable for wins
-var wins = 0
+
 // set guess-left counter
-var guesses = 10
+var guesses = 10;
 // set correct guess counter
-var correct = 0
+var correct = 0;
 
 // creates empty spaces for current word
 function startLogic() {
-for (var i = 0; i < word.length; i++) {
+    word = words[Math.floor(Math.random() * words.length)];
+console.log(word);
+    answerArray = [];
+    guesses = 10;
+    correct = 0;
+    for (var i = 0; i < word.length; i++) {
     answerArray[i] = "_";
     console.log(answerArray);
-    document.getElementById("current-word").innerHTML = answerArray.join(" ");
-}
+    document.getElementById("current-word").innerHTML =answerArray.join(" ");
+    }
 }
 
+    
 // get keypress to register
 document.onkeypress = function(key_dtl) {
     key_dtl = key_dtl || window.event; 
@@ -59,8 +64,8 @@ document.onkeypress = function(key_dtl) {
     // if letter in word is false, assign keypress to already-guessed
     else {
         document.getElementById("already-guessed").innerHTML += key_name;
-        
     }
+
     // record win if player guesses correctly
     if (correct === word.length) {
     console.log(correct);
@@ -71,12 +76,7 @@ document.onkeypress = function(key_dtl) {
     
 }
 
-if (guesses === 0) {
-    startLogic(onload);
-}
+// if (guesses === 0) {
+//     startLogic(onload);
+// }
 
-
-
-    
-
-    
