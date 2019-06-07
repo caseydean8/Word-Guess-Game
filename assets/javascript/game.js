@@ -15,8 +15,9 @@ var guesses;
 var correct;
 // reset game
 function gameReset() {
+    document.getElementById("current-word").innerHTML = word;
     document.getElementById("already-guessed").innerHTML = " ";
-    guesses = 10;
+    document.getElementById("guesses-left").innerHTML = "10";
     document.onkeypress = function(key_dtl) {
         startLogic();
     }
