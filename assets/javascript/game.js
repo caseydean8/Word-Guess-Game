@@ -5,16 +5,14 @@
 var wins = 0
 // temporary test array
 var words = ['monkey', 'dog', 'pig']
-// pick a random word
-var word = words[Math.floor(Math.random() * words.length)];
-console.log(word);
+
 // set up an array to designate the answer
 var answerArray = [];
 
-// set guess-left counter
-var guesses = 10;
-// set correct guess counter
-var correct = 0;
+// define guess variable
+var guesses;
+// define correct guess variable
+var correct;
 
 // creates empty spaces for current word
 function startLogic() {
@@ -49,13 +47,9 @@ document.onkeypress = function(key_dtl) {
     }
     //if letterInWord is true, create letter in current-word at correct index
     if (letterInWord) {
-
-        
-            
         for (var j = 0; j < word.length; j++){
             if (word[j] === key_name) 
             answerArray[j] = key_name;
-        
             document.getElementById("current-word").innerHTML = answerArray.join();
         }
         
@@ -80,8 +74,3 @@ document.onkeypress = function(key_dtl) {
         startLogic();
     }
 }
-
-// if (guesses === 0) {
-//     startLogic();
-// }
-
