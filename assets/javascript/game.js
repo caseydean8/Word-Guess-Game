@@ -13,6 +13,14 @@ var answerArray = [];
 var guesses;
 // define correct guess variable
 var correct;
+// reset game
+function gameReset() {
+    document.getElementById("already-guessed").innerHTML = " ";
+    guesses = 10;
+    document.onkeypress = function(key_dtl) {
+        startLogic();
+    }
+}
 
 // creates empty spaces for current word
 function startLogic() {
@@ -26,7 +34,7 @@ console.log(word);
     console.log(answerArray);
     document.getElementById("current-word").innerHTML =answerArray.join(" ");
     }
-}
+
 
     // get keypress to register
 document.onkeypress = function(key_dtl) {
@@ -47,7 +55,7 @@ document.onkeypress = function(key_dtl) {
     }
     //if letterInWord is true, create letter in current-word at correct index
     if (letterInWord) {
-        for (var j = 0; j < word.length; j++){
+        for (var j = 0; j <= word.length; j++){
             if (word[j] === key_name) 
             answerArray[j] = key_name;
             document.getElementById("current-word").innerHTML = answerArray.join();
@@ -64,13 +72,14 @@ document.onkeypress = function(key_dtl) {
     console.log(correct);
     wins++;
     document.getElementById("wins").innerHTML = wins;
-    document.getElementById("already-guessed").innerHTML = " ";
-    startLogic();
+    gameReset();
     } 
     
     // reset game upon loss
     else if (guesses === 0) {
         document.getElementById("already-guessed").innerHTML = " ";
-        startLogic();
+        gameReset();
     }
+    
+}
 }
