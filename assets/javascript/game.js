@@ -5,7 +5,7 @@
 var wins = 0
 
 // Temporary test array.
-var words = ['monkey', 'dog', 'pig']
+var words = ["monkey", "dog", "pig", "tiger", "bear"]
 
 // Set up an array to designate the answer.
 var answerArray = [];
