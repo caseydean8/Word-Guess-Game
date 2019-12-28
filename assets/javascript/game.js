@@ -11,7 +11,7 @@ var words = ["monkey", "dog", "pig", "tiger", "bear"];
 var answerArray = [];
 
 // Define guess variable.
-var guesses;
+var guesses = 10;
 
 // Define correct guess variable.
 var correct;
@@ -19,7 +19,8 @@ var correct;
 // Reset game
 function gameReset() {
   document.getElementById("current-word").innerHTML = word;
-  document.getElementById("guesses-left").innerHTML = "10";
+  guesses = 10;
+  document.getElementById("guesses-left").innerHTML = guesses;
   document.onkeypress = function(event) {
     startLogic();
   };
@@ -31,7 +32,6 @@ function startLogic() {
   word = words[Math.floor(Math.random() * words.length)];
   console.log(word);
   answerArray = [];
-  guesses = 10;
   correct = 0;
   for (var i = 0; i < word.length; i++) {
     answerArray[i] = "_";
@@ -42,8 +42,6 @@ function startLogic() {
   // Get keypress to register as guess.
   document.onkeypress = function(event) {
     const userKey = event.key;
-    guesses--;
-    document.getElementById("guesses-left").innerHTML = guesses;
 
     // If the letter in the word generated is equal to the players keypress then set variable letterInWord to true.
     var letterInWord = false;
@@ -54,6 +52,7 @@ function startLogic() {
         console.log(correct);
       }
     }
+
     // If letterInWord is true, create letter in current-word . . .
     if (letterInWord) {
       for (var j = 0; j < word.length; j++) {
@@ -65,15 +64,19 @@ function startLogic() {
         );
       }
     }
+
     // If letter in word is false, assign keypress to already-guessed.
     else {
       document.getElementById("already-guessed").innerHTML += userKey;
+      guesses--;
+      document.getElementById("guesses-left").innerHTML = guesses;
     }
 
     // Record win if player guesses correctly.
     if (correct === word.length) {
       wins++;
       document.getElementById("wins").innerHTML = wins;
+      document.getElementById("already-guessed").innerHTML = "Great Guess!";
       gameReset();
     }
 
