@@ -16,21 +16,18 @@ var guesses;
 // Define correct guess variable.
 var correct;
 
-// Alert player of loss, not functioning. See line 87.
-var lose = "YOU LOSE";
-
 // Reset game
 function gameReset() {
   document.getElementById("current-word").innerHTML = word;
-  document.getElementById("already-guessed").innerHTML = " ";
   document.getElementById("guesses-left").innerHTML = "10";
-  document.onkeypress = function(key_dtl) {
+  document.onkeypress = function(event) {
     startLogic();
   };
 }
 
 // Game start from html . This creates empty spaces for current word.
 function startLogic() {
+  document.getElementById("already-guessed").innerHTML = " ";
   word = words[Math.floor(Math.random() * words.length)];
   console.log(word);
   answerArray = [];
@@ -45,6 +42,7 @@ function startLogic() {
   // Get keypress to register as guess.
   document.onkeypress = function(event) {
     const userKey = event.key;
+    guesses--;
     document.getElementById("guesses-left").innerHTML = guesses;
 
     // If the letter in the word generated is equal to the players keypress then set variable letterInWord to true.
@@ -81,11 +79,8 @@ function startLogic() {
 
     // Reset game upon loss.
     else if (guesses === 0) {
-      // Not sure why following line doesn't work.
-      document.getElementById("already-guessed").innerHTML = lose;
-      console.log(
-        (document.getElementById("already-guessed").innerHTML = lose)
-      );
+      document.getElementById("already-guessed").innerHTML = "You Lost";
+
       gameReset();
     }
   };
