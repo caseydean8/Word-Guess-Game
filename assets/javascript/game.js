@@ -5,10 +5,11 @@
 var wins = 0;
 
 // Temporary test array.
-var words = ["monkey", "dog", "pig", "tiger", "bear"];
+var words = ["monkey", "dog", "pig", "tiger", "bear", "ass"];
 
 // Set up an array to designate the answer.
 var answerArray = [];
+const usedKeys = [];
 
 // Define guess variable.
 var guesses = 10;
@@ -37,24 +38,42 @@ function startLogic() {
     answerArray[i] = "_";
     document.getElementById("current-word").innerHTML = answerArray.join(" ");
   }
-  console.log(answerArray);
+  // boolean?
+  //   let keyUsed = false;
+  // or used key array?
+  //   const usedKeys = [];
+  console.log(`before keypress:`);
+  console.log(usedKeys);
 
   // Get keypress to register as guess.
   document.onkeypress = function(event) {
+    console.log(`after keypress:`);
+    console.log(usedKeys);
     const userKey = event.key;
-
+    console.log(userKey);
+    // const usedKeys = [];
+    let keyUsed = false;
     // If the letter in the word generated is equal to the players keypress then set variable letterInWord to true.
     var letterInWord = false;
+    // let keyUsed = false;
+    console.log(`keyUsed is ${keyUsed}`);
+
     for (var j = 0; j < word.length; j++) {
       if (word[j] === userKey) {
         letterInWord = true;
-        correct++;
-        console.log(correct);
+        console.log(`letter in word is true`);
       }
     }
 
+    for (var i = 0; i < usedKeys.length; i++) {
+      if (usedKeys[i] === userKey) {
+        keyUsed = true;
+        console.log(`key used is true: ${keyUsed}`)
+      };
+    }
+
     // If letterInWord is true, create letter in current-word . . .
-    if (letterInWord) {
+    if (letterInWord && keyUsed === false) {
       for (var j = 0; j < word.length; j++) {
         if (word[j] === userKey)
           // . . . at correct index
@@ -63,14 +82,21 @@ function startLogic() {
           " "
         );
       }
-    }
-
-    // If letter in word is false, assign keypress to already-guessed.
-    else {
+      correct++;
+      usedKeys.push(userKey);
+      console.log(`used keys after #1 if statement:`);
+      console.log(usedKeys);
+    } else if (letterInWord === false && keyUsed === false) {
       document.getElementById("already-guessed").innerHTML += userKey;
       guesses--;
       document.getElementById("guesses-left").innerHTML = guesses;
+      usedKeys.push(userKey);
+      console.log(`used keys after #2 if statement:`);
+      console.log(usedKeys);
+    } else {
+      console.log("letter has been chosen already");
     }
+    // console.log(usedKeys);
 
     // Record win if player guesses correctly.
     if (correct === word.length) {
