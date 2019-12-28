@@ -9,7 +9,8 @@ var words = ["monkey", "dog", "pig", "tiger", "bear", "ass"];
 
 // Set up an array to designate the answer.
 var answerArray = [];
-const usedKeys = [];
+let comparisonArray = [];
+let usedKeys = [];
 
 // Define guess variable.
 var guesses = 10;
@@ -22,6 +23,8 @@ function gameReset() {
   document.getElementById("current-word").innerHTML = word;
   guesses = 10;
   document.getElementById("guesses-left").innerHTML = guesses;
+  usedKeys = [];
+  comparisonArray = [];
   document.onkeypress = function(event) {
     startLogic();
   };
@@ -33,35 +36,39 @@ function startLogic() {
   word = words[Math.floor(Math.random() * words.length)];
   console.log(word);
   answerArray = [];
+//   console.log(`word length: ${word.length}`);
+//   console.log(`answer array length: ${answerArray.length}`)
   correct = 0;
   for (var i = 0; i < word.length; i++) {
     answerArray[i] = "_";
+    comparisonArray.push(word[i]);
     document.getElementById("current-word").innerHTML = answerArray.join(" ");
   }
+  console.log(`comparison array: ${comparisonArray}`);
   // boolean?
   //   let keyUsed = false;
   // or used key array?
   //   const usedKeys = [];
-  console.log(`before keypress:`);
-  console.log(usedKeys);
+//   console.log(`before keypress:`);
+//   console.log(usedKeys);
 
   // Get keypress to register as guess.
   document.onkeypress = function(event) {
-    console.log(`after keypress:`);
-    console.log(usedKeys);
+    // console.log(`after keypress:`);
+    // console.log(usedKeys);
     const userKey = event.key;
-    console.log(userKey);
+    // console.log(userKey);
     // const usedKeys = [];
     let keyUsed = false;
     // If the letter in the word generated is equal to the players keypress then set variable letterInWord to true.
     var letterInWord = false;
     // let keyUsed = false;
-    console.log(`keyUsed is ${keyUsed}`);
+    // console.log(`keyUsed is ${keyUsed}`);
 
     for (var j = 0; j < word.length; j++) {
       if (word[j] === userKey) {
         letterInWord = true;
-        console.log(`letter in word is true`);
+        // console.log(`letter in word is true`);
       }
     }
 
@@ -81,17 +88,18 @@ function startLogic() {
         document.getElementById("current-word").innerHTML = answerArray.join(
           " "
         );
-      }
+      };
       correct++;
       usedKeys.push(userKey);
-      console.log(`used keys after #1 if statement:`);
-      console.log(usedKeys);
+    //   console.log(`used keys after #1 if statement:`);
+    //   console.log(usedKeys);
+      console.log(`answer array: ${answerArray}`);
     } else if (letterInWord === false && keyUsed === false) {
       document.getElementById("already-guessed").innerHTML += userKey;
       guesses--;
       document.getElementById("guesses-left").innerHTML = guesses;
       usedKeys.push(userKey);
-      console.log(`used keys after #2 if statement:`);
+    //   console.log(`used keys after #2 if statement:`);
       console.log(usedKeys);
     } else {
       console.log("letter has been chosen already");
@@ -99,7 +107,7 @@ function startLogic() {
     // console.log(usedKeys);
 
     // Record win if player guesses correctly.
-    if (correct === word.length) {
+    if (JSON.stringify(comparisonArray) === JSON.stringify(answerArray)) {
       wins++;
       document.getElementById("wins").innerHTML = wins;
       document.getElementById("already-guessed").innerHTML = "Great Guess!";
