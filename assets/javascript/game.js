@@ -1,4 +1,4 @@
-// Array of GOT names, to be added after logic is completed
+// Array of GOT names, to be added after logic is completed.
 // var words = ["daenerys targaryen", ['jon snow'], ['tyrion lannister'], ['bran stark'], ['sansa stark'], ['arya stark'], ['cersei lannister'], ['jaime lannister'], ['khal drago'], ['joffrey baratheon'], ['theon greyjoy'], ['samwell tarly'], ['brienne of tarth'], ['ramsay bolton'], ['podrick payne'], ['davos seaworth'], ['jorah mormont'], ['petyr Baelish']];
 
 // Define variable for wins.
@@ -60,7 +60,7 @@ document.onkeypress = function(key_dtl) {
     }
     // If letterInWord is true, create letter in current-word . . . 
     if (letterInWord) {
-        for (var j = 0; j <= word.length; j++){
+        for (var j = 0; j < word.length; j++){
             if (word[j] === key_name) 
             // . . . at correct index
             answerArray[j] = key_name;
